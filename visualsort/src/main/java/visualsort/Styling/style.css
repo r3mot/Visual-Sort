@@ -1,0 +1,23 @@
+
+.button {
+    -fx-background-radius: 60px;
+    -fx-background-color: black;
+}
+
+.button:hover {
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+}
+
+.view {
+    -fx-background-radius: 60px;
+    -fx-background-color: black;
+}
+.view:hover{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.text-field {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}

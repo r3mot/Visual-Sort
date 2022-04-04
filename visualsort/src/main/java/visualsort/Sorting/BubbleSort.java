@@ -3,6 +3,8 @@ package visualsort.Sorting;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import visualsort.MainController;
+
 public class BubbleSort {
 
     private String[] iterations;
@@ -15,9 +17,10 @@ public class BubbleSort {
 
     }
 
-    public void sort(ArrayList < Integer > array, int byWhat) {
+    public void sort(ArrayList < Integer > array) {
 
         bubbleSort(array);
+        sendToController();
 
     }
 
@@ -63,5 +66,10 @@ public class BubbleSort {
             col++;
         }
 
-    }    
+    }
+    
+    private void sendToController(){
+        MainController.setIntIterations(iteration_values);
+        MainController.setStringIterations(iterations);
+    }
 }

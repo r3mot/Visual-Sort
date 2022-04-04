@@ -1,23 +1,22 @@
 package visualsort.Utility;
 
-public class ComboBoxNumbers {
+public class ComboValues {
 
-    private static int[] min;
-    private static int[] max;
-    private static int maxSize = 100;
-    private static int minSize = 90;
+    private int[] min;
+    private int[] max;
+    private int maxSize = 100;
+    private int minSize = 90;
     
-    public static int[] getMinValues(){
+    public int[] getMinValues(){
 
         min = new int[maxSize];
         for(int i = 0; i < maxSize; i++){
             min[i] = i;
         }
         return min;
-
     }
 
-    public static int[] getMaxValues(int min){
+    public int[] getMaxValues(int min){
 
         min += 11;
         max = new int[minSize];
