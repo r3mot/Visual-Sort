@@ -27,8 +27,7 @@ import visualsort.Sorting.MergeSort;
 import visualsort.Utility.RandomArray;
 
 
-public class MainController implements Initializable {
-
+public class MainController implements Initializable{
 
     private final double TOP = 0;
     private final double MIDDLE = 0.83;
@@ -253,4 +252,5 @@ public class MainController implements Initializable {
         valueLabes[9] = this.l10;
 
     }
+    
 }
