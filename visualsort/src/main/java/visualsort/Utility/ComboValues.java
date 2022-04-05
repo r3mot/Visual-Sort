@@ -1,5 +1,9 @@
 package visualsort.Utility;
 
+
+// Initializes all values for combo boxes (min / max)
+// Seperates the two by 11 integers
+
 public class ComboValues {
 
     private int[] min;

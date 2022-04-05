@@ -4,36 +4,25 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.animation.PauseTransition;
-import javafx.animation.TranslateTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import visualsort.Sorting.BubbleSort;
 import visualsort.Sorting.MergeSort;
-import visualsort.Utility.RandomArray;
 
 
 public class MainController implements Initializable{
 
     private final double TOP = 0;
     private final double MIDDLE = 0.83;
-    private final double BOTTOM = 100;
-    
-
 
     /* GUI Components */
     @FXML private Button startButton;
@@ -45,17 +34,8 @@ public class MainController implements Initializable{
     @FXML private Button viewButton;
     @FXML private Button hideButton;
     @FXML private Button homeButton;
-    @FXML private ComboBox <String> algorithmsCombo;
-    @FXML private ComboBox <Integer> minCombo;
-    @FXML private ComboBox <Integer> maxCombo;
-    @FXML private Label sortTypeLabel;
-    @FXML private Label generateLabel;
-    @FXML private Label algorithmTypeLabel;
-    @FXML private Label runningLabel;
     @FXML private Pane menuPane;
     @FXML private Pane vizualizerPane;
-    @FXML private Pane randomPane;
-    @FXML private Pane userPane;
     @FXML private RadioButton bubbleRadio;
     @FXML private RadioButton mergeRadio;
     @FXML private SplitPane splitPane;
@@ -63,6 +43,7 @@ public class MainController implements Initializable{
     @FXML private TextField userInput;
     @FXML private TextField lowInput;
     @FXML private TextField highInput;
+    @FXML private Label sortedLabel;
     @FXML private Rectangle r1, r2, r3, r4, r5, r6, r7, r8, r9, r10;
     @FXML private Label l1, l2, l3, l4, l5, l6, l7, l8, l9, l10;
 
@@ -71,22 +52,8 @@ public class MainController implements Initializable{
     private String valueDisplay;
     private String sortType;
 
-    /* Stores Combo Box Options*/
-    private ObservableList < String > sortOptions;
-    private ObservableList < Integer > minOptions;
-    private ObservableList < Integer > maxOptions;
-
-     /* Controls component visibility */
-     private final boolean ON = true;
-     private final boolean OFF = false;
-     private String where;
-
-     /* Combo Box Values */
-     private int minValue;
-     private int maxValue;
 
      /* Sorting Variables */
-     private final int CAPACITY = 10;
      private ArrayList<Integer> arrayToSort;
      private static String[] iterations;
      private static int[][] iterations_int;
@@ -97,57 +64,79 @@ public class MainController implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+
         PickerController picker = new PickerController();
         arrayToSort = picker.getArray();
         sortType = PickerController.sortType;
+        sortedLabel.setText("Press Start!");
+        stepButton.setDisable(true);
         setValueLabels();
         setRectangles();
+
     }
 
     @FXML void switchToHome(ActionEvent event) throws IOException {
-        App.setRoot("");
+
+        App.setRoot("Home");
+
     }
 
-    /* Main Action Events */
-
-
+    /* Sorting has begun */
     @FXML void startClicked(ActionEvent event) {
+
+        sortedLabel.setText("");
+        startButton.setDisable(true);
+        stepButton.setDisable(false);
         startSorting();
+        updateRectangles();
+
     }
 
+    /* Iterate through array */
     @FXML void stepClicked(ActionEvent event) {
+
         incrementStep();
+        updateRectangles();
+
     }
 
+    /* Reset Fields */
     @FXML void resetClicked(ActionEvent event) throws IOException {
+
         App.setRoot("Picker");
+
     }
 
+    /* Hides Text Area that houses iterations in text format */
     @FXML void hideSteps(ActionEvent event){
+
         splitPane.setDividerPosition(0, MIDDLE);
+
     }
 
     @FXML void viewClicked(ActionEvent event){
-        splitPane.setDividerPosition(0, TOP);
-    }
 
-    public void setArrayToSort(ArrayList<Integer> array){
-        arrayToSort = array;
+        splitPane.setDividerPosition(0, TOP);
+
     }
     
-
-
     private void startSorting() {
+
         displayUnsorted();
         sortArray(sortType);
-        updateRectangles();
+
     }
 
+    /* Appends Unsorted Array to Text Area */
     private void displayUnsorted() {
-        String toAppend = "Unsorted Data: " + arrayToSort.toString() + "\n";
+
+        textArea.appendText("Sort Type: "  + sortType + "\n");
+        String toAppend = "Start: " + arrayToSort.toString() + "\n";
         textArea.appendText(toAppend);
+
     }
 
+    /* Determines which algorithm to use */
     private void sortArray(String algorithm) {
 
         BubbleSort bubble = new BubbleSort();
@@ -164,6 +153,7 @@ public class MainController implements Initializable{
         }
     }
 
+    /* Dynamically changes Rectangle heights */
     private void updateRectangles() {
        
         for (int i = 0; i < 10; i++) {
@@ -171,8 +161,12 @@ public class MainController implements Initializable{
             int value = iterations_int[globalIndex][i];
             int height = (int) (value  + (value * 0.5));
 
-            if (height >= 152) {
-                height = 150;
+            if (height >= 230) {
+                height = 230;
+            }
+
+            if(height < 100){
+                height += 2;
             }
          
             rectangles[i].setLayoutY(161);
@@ -182,6 +176,7 @@ public class MainController implements Initializable{
 
     }
 
+    /* Increment steps */
     private void incrementStep() {
 
         String sortedString = arrayToSort.toString();
@@ -189,37 +184,35 @@ public class MainController implements Initializable{
 
         sorted = sortedString.equals(current) ? true : false;
 
-       if(finished(sorted, current)) return;
+       if(finished(sorted, current)) {
+            stringToDisplay();
+            stepButton.setDisable(true);
+            return;
+       }
 
         stringToDisplay();
-        updateRectangles();
         globalIndex++;
-
     }
 
+    /* Determine whether array is sorted or not */
     private boolean finished(boolean isSorted, String current){
         
         if (isSorted || current == null) 
         {
+            sortedLabel.setText("Array is sorted!");
             return true;
         }
         return false;
     }
 
+    /* Text to display in Text Area */
     private void stringToDisplay(){
+
         valueDisplay = iterations[globalIndex];
-        String toDisplay = (("Step ") + (globalIndex + 1) + ": " + (valueDisplay));
+        String toDisplay = (("Pass ") + (globalIndex + 1) + ": " + (valueDisplay));
         textArea.appendText((toDisplay) + "\n");
-    }
 
-    public static void setStringIterations(String[] strIterations){
-        iterations = strIterations;
     }
-
-    public static void setIntIterations(int[][] intIterations){
-        iterations_int = intIterations;
-    }
-
 
     private void setRectangles() {
 
@@ -252,5 +245,18 @@ public class MainController implements Initializable{
         valueLabes[9] = this.l10;
 
     }
-    
+
+    /* Public Modifiers */
+    public static void setStringIterations(String[] strIterations){
+        iterations = strIterations;
+    }
+
+    public static void setIntIterations(int[][] intIterations){
+        iterations_int = intIterations;
+    }
+
+    public void setArrayToSort(ArrayList<Integer> array){
+        arrayToSort = array;
+    }
+
 }

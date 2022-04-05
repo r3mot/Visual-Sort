@@ -10,6 +10,7 @@ public class HomeController {
 
     @FXML private Button goToRandom;
     @FXML private Button goToCustom;
+    @FXML private Button exitButton;
 
     public static double dividerPosition;
     
@@ -22,5 +23,9 @@ public class HomeController {
     @FXML void switchToRandom(ActionEvent event) throws IOException {
         dividerPosition = 0;
         App.setRoot("Picker");
+    }
+
+    @FXML void exitClicked(ActionEvent event) {
+        System.exit(0);
     }
 }

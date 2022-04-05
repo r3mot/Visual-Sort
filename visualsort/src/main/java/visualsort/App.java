@@ -8,16 +8,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
+
 public class App extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("HomeScreen"), 800, 650);
+        scene = new Scene(loadFXML("Home"), 800, 650);
         String css = this.getClass().getResource("/visualsort/Styling/style.css").toExternalForm();
         scene.getStylesheets().add(css);
         stage.setScene(scene);

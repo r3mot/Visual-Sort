@@ -7,16 +7,57 @@
 .button:hover {
     -fx-background-color: blue;
     -fx-text-fill: white;
+} 
+
+#generate {
+    -fx-background-color: white;
+    -fx-text-fill: black;
 }
 
-.view {
+#generate:hover {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
+
+#back {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+#back:hover {
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+}
+
+#viewSteps {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+
+#viewSteps:hover {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+}
+
+#hideSteps {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+#hideSteps:hover {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+}
+
+/* .view {
     -fx-background-radius: 60px;
     -fx-background-color: black;
 }
 .view:hover{
     -fx-background-color: black;
     -fx-text-fill: white;
-}
+} */
 
 .text-field {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);

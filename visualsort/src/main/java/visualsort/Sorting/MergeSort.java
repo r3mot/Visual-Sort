@@ -3,11 +3,15 @@ package visualsort.Sorting;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import visualsort.MainController;
+
 public class MergeSort {
 
     private String[] iterations;
     private int[][] currItr;
+
     private int steps = 0;
+    private int allSteps = 0;
 
     public String[] getSteps() {
         return iterations;
@@ -20,6 +24,7 @@ public class MergeSort {
         currItr = new int[50][50];
 
         mergesort(array, 0, array.size() - 1);
+        sendToController();
 
     }
 
@@ -32,9 +37,19 @@ public class MergeSort {
         mergesort(array, mid + 1, high);
         merge(array, low, mid, high);
 
+        // Gets last iteration
+        iterations[steps] = array.toString();
+        updateRectangleArray(array, steps);
+
     }
 
     private void merge(ArrayList < Integer > array, int low, int mid, int high) {
+
+        // Updates iterations
+        iterations[steps] = array.toString();
+        updateRectangleArray(array, steps);
+        steps++;
+
 
         int leftArray[] = new int[mid - low + 1];
         int rightArray[] = new int[high - mid];
@@ -50,10 +65,6 @@ public class MergeSort {
 
 
         for (int i = low; i < high + 1; i++) {
-
-            iterations[steps] = array.toString();
-            updateRectangleArray(array, steps);
-            steps++;
 
             if (left < leftArray.length && right < rightArray.length) {
 
@@ -93,6 +104,11 @@ public class MergeSort {
             swapRow++;
 
         }
+    }
+
+    private void sendToController(){
+        MainController.setStringIterations(iterations);
+        MainController.setIntIterations(currItr);
     }
     
 }

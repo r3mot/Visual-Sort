@@ -12,23 +12,30 @@
    <children>
       <ImageView fitHeight="650.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@milad-fakurian-E8Ufcyxz514-unsplash.jpg" />
+            <Image url="@BG.jpg" />
          </image>
       </ImageView>
       <Pane prefHeight="650.0" prefWidth="800.0">
          <children>
-            <Label alignment="CENTER" layoutY="-1.0" prefHeight="166.0" prefWidth="800.0" text="Sort Vizualizer">
+            <Label alignment="CENTER" layoutY="68.0" prefHeight="166.0" prefWidth="800.0" text="Sort Vizualizer">
                <font>
                   <Font size="95.0" />
                </font>
             </Label>
-            <Button fx:id="goToRandom" layoutX="134.0" layoutY="377.0" mnemonicParsing="false" onAction="#switchToRandom" prefHeight="99.0" prefWidth="193.0" text="Generate Random Array" textFill="WHITE" wrapText="true" />
-            <Button fx:id="goToCustom" layoutX="449.0" layoutY="377.0" mnemonicParsing="false" onAction="#switchToCustom" prefHeight="99.0" prefWidth="193.0" text="Create My Own Array" textFill="WHITE" wrapText="true" />
-            <Label layoutX="258.0" layoutY="221.0" prefHeight="40.0" prefWidth="285.0" text="Please Make A Selection">
+            <Button fx:id="goToRandom" layoutX="134.0" layoutY="446.0" mnemonicParsing="false" onAction="#switchToRandom" prefHeight="99.0" prefWidth="193.0" text="Generate Random Array" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="goToCustom" layoutX="449.0" layoutY="446.0" mnemonicParsing="false" onAction="#switchToCustom" prefHeight="99.0" prefWidth="193.0" text="Create Custom Array" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Label layoutX="258.0" layoutY="234.0" prefHeight="40.0" prefWidth="285.0" text="Please Make A Selection">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
+            <Button fx:id="exitButton" layoutX="713.0" layoutY="28.0" mnemonicParsing="false" onAction="#exitClicked" prefHeight="25.0" prefWidth="67.0" text="Exit" />
          </children>
       </Pane>
    </children>

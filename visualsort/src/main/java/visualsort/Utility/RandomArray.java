@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
+// Generates a random / unique array
+
 public class RandomArray {
 
     private ArrayList<Integer> toSort;
@@ -36,7 +38,8 @@ public class RandomArray {
     }
 
     public ArrayList <Integer> getArray() {
-        Collections.shuffle(toSort); // Used collections shuffle to exaggerate the sort
+        Collections.shuffle(toSort); 
+        // Used collections shuffle to exaggerate the sort
         return toSort;
     }
     
